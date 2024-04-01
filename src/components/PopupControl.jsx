@@ -34,10 +34,10 @@ export default function PopupControl() {
 
   if (pop) {
     return (
-      <div id="popup">
-        <form id="pop">
+      <form onSubmit={addNote} id="popup">
+        <div id="pop">
           <button
-          id='cancelAdd'
+            id="cancelAdd"
             onClick={() => {
               closePop();
               clearAll();
@@ -45,7 +45,9 @@ export default function PopupControl() {
           >
             cancel
           </button>
-          <button id='addAdd' onClick={addNote}>add</button>
+          <button type="submit" id="addAdd">
+            add
+          </button>
           <input
             autofocus
             required
@@ -68,34 +70,33 @@ export default function PopupControl() {
 
           <h2>type</h2>
           <div>
-            <label>+</label>
-            <input
-              value={true}
-              name="0"
-              type="radio"
-              onChange={() => {
-                setNewNote({ ...newNote, type: true });
-              }}
-            />
-            <label>-</label>
-            <input
-              value={false}
-              name="0"
-              type="radio"
-              onChange={() => {
-                setNewNote({ ...newNote, type: false });
-              }}
-            />
+            <div id="selectMeth">
+              <div
+                onClick={() => {
+                  setNewNote({ ...newNote, type: true });
+                }}
+                className={`${newNote.type ? "select" : ""}`}
+              >
+                + add
+              </div>
+              <div
+                onClick={() => {
+                  setNewNote({ ...newNote, type: false });
+                }}
+                className={`${newNote.type ? "" : "select"}`}
+              >
+                - mines
+              </div>
+            </div>
           </div>
-          <label for="cars">type :</label>
+          <label>type :</label>
 
           <select
             onChange={(e) => {
               setNewNote({ ...newNote, img: e.target.value });
             }}
             value={newNote.img}
-            name="cars"
-            id="cars"
+            id="type"
           >
             <option value="	https://cdn-icons-png.flaticon.com/512/3514/3514491.png">
               shopping
@@ -110,8 +111,8 @@ export default function PopupControl() {
               bills
             </option>
           </select>
-        </form>
-      </div>
+        </div>
+      </form>
     );
   }
 }

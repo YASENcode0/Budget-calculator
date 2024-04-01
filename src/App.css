@@ -162,12 +162,8 @@
 #pop input {
   outline: none;
 }
-#pop option {
-  background-color: brown;
-  width: 3vh;
-  height: 3vh;
-}
 #pop button{
+  cursor: pointer;
   margin: 1vh 0 ;
   border: none;
   border-radius: 1vh;
@@ -222,4 +218,20 @@
 }
 .delete {
   background-color: #fc3535;
+}
+#selectMeth div{
+  cursor: pointer;
+  border: solid white;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 1vh;
+  background-color: #eeeeee;
+}
+.select{
+  box-shadow: 0px 0px 10px 5px #0000002c
+}
+#selectMeth{
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
 }
