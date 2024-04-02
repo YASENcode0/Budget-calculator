@@ -3,6 +3,8 @@ import { NotesContext } from "../contexts/NotesContext";
 
 export default function NavBar() {
   const {
+    popMnu,
+    setPopMnu,
     NavBtn,
     setNavBtn,
     notes,
@@ -30,7 +32,7 @@ export default function NavBar() {
           {count}
         </div>
       <div>
-        <button>
+        <button onClick={()=>{setPopMnu(true)}}>
           <img src='' alt="mnu"/>
         </button>
       </div>

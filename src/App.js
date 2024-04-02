@@ -15,6 +15,7 @@ function App() {
   const [coinMark, setCoinMark] = useState("$");
   const [NavBtn, setNavBtn] = useState(1);
   const [popDelete, setPopDelete] = useState(false);
+  const [popMnu, setPopMnu] = useState(false);
 
   useEffect(() => {
     const loadCount = JSON.parse(localStorage.getItem("count"));
@@ -63,6 +64,8 @@ function App() {
   return (
     <NotesContext.Provider
       value={{
+        popMnu,
+        setPopMnu,
         popDelete,
         setPopDelete,
         deleteNote,
@@ -82,7 +85,7 @@ function App() {
       }}
     >
       <div className="App">
-        {/* <PopMnu /> */}
+        <PopMnu />
         <PopupControl />
         <NavBar />
         <Main />
