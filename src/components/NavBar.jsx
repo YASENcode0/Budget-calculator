@@ -31,11 +31,15 @@ export default function NavBar() {
           {coinMark}
           {count}
         </div>
-      <div>
-        <button onClick={()=>{setPopMnu(true)}}>
-          <img src='' alt="mnu"/>
+
+        <button
+          className="mun-btn"
+          onClick={() => {
+            setPopMnu(true);
+          }}
+        >
+          <img src="" alt="mnu" />
         </button>
-      </div>
       </div>
       <div className="NavBtn">
         <button

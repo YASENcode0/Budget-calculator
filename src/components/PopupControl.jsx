@@ -34,7 +34,13 @@ export default function PopupControl() {
 
   if (pop) {
     return (
-      <form onSubmit={addNote} id="popup">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          addNote();
+        }}
+        id="popup"
+      >
         <div id="pop">
           <button
             id="cancelAdd"
@@ -50,7 +56,7 @@ export default function PopupControl() {
           </button>
           <input
             autofocus
-            required
+            // required
             placeholder="title"
             value={newNote.title}
             type="text"
@@ -59,7 +65,7 @@ export default function PopupControl() {
             }}
           />
           <input
-            required
+            // required
             placeholder="amount"
             value={newNote.amount}
             type="number"
@@ -71,22 +77,22 @@ export default function PopupControl() {
           <h2>type</h2>
           <div>
             <div id="selectMeth">
-              <div
+              <button
                 onClick={() => {
                   setNewNote({ ...newNote, type: true });
                 }}
                 className={`${newNote.type ? "select" : ""}`}
               >
-                + add
-              </div>
-              <div
+                + 
+              </button>
+              <button
                 onClick={() => {
                   setNewNote({ ...newNote, type: false });
                 }}
                 className={`${newNote.type ? "" : "select"}`}
               >
-                - mines
-              </div>
+                - 
+              </button>
             </div>
           </div>
           <label>type :</label>
