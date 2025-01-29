@@ -1,5 +1,10 @@
 import React, { useContext } from "react";
 import { NotesContext } from "../contexts/NotesContext";
+import { IoMdSettings } from "react-icons/io";
+import { IoIosArrowForward } from "react-icons/io";
+import { RiWalletLine } from "react-icons/ri";
+import { MdAttachMoney } from "react-icons/md";
+import { MdMoneyOff } from "react-icons/md";
 
 export default function NavBar() {
   const {
@@ -33,12 +38,13 @@ export default function NavBar() {
         </div>
 
         <button
+          name="closer"
           className="mun-btn"
           onClick={() => {
-            setPopMnu(true);
+            setPopMnu(!popMnu);
           }}
         >
-          <img src="" alt="mnu" />
+          {popMnu ? <IoIosArrowForward /> : <IoMdSettings name="closer" />}
         </button>
       </div>
       <div className="NavBtn">
@@ -48,7 +54,8 @@ export default function NavBar() {
             setNavBtn(1);
           }}
         >
-          chose1
+          <RiWalletLine />
+          All
         </button>
         <button
           className={`${NavBtn === 2 ? "choose" : ""}`}
@@ -56,7 +63,8 @@ export default function NavBar() {
             setNavBtn(2);
           }}
         >
-          chose2
+          <MdAttachMoney />
+          income
         </button>
         <button
           className={`${NavBtn === 3 ? "choose" : ""}`}
@@ -64,7 +72,8 @@ export default function NavBar() {
             setNavBtn(3);
           }}
         >
-          chose3
+          <MdMoneyOff />
+          expenses
         </button>
       </div>
     </div>

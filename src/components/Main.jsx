@@ -5,7 +5,6 @@ import PopupDelete from "./PopupDelete";
 
 export default function Main() {
   const [idDelete, setIdDelete] = useState("");
-
   const {
     NavBtn,
     notes,
@@ -16,7 +15,15 @@ export default function Main() {
     deleteNote,
     popDelete,
     setPopDelete,
+    newNote,
+    setNewNote,
+    closePop,
   } = useContext(NotesContext);
+
+  function editNote(data) {
+    setNewNote(data);
+    closePop();
+  }
 
   return (
     <div className="Main">
@@ -32,6 +39,7 @@ export default function Main() {
                   key={note.id}
                   deleteNote={deleteNote}
                   setIdDelete={setIdDelete}
+                  editNote={editNote}
                 />
               );
             } else if (NavBtn === 2) {
@@ -45,6 +53,7 @@ export default function Main() {
                     key={note.id}
                     deleteNote={deleteNote}
                     setIdDelete={setIdDelete}
+                    editNote={editNote}
                   />
                 );
               }
@@ -59,6 +68,7 @@ export default function Main() {
                     key={note.id}
                     deleteNote={deleteNote}
                     setIdDelete={setIdDelete}
+                    editNote={editNote}
                   />
                 );
               }

@@ -6,9 +6,11 @@
 
 .red {
   color: #fc3535;
+  font-size: large;
 }
 .green {
   color: #22b622;
+  font-size: large;
 }
 
 .App {
@@ -17,6 +19,7 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 15% 75% 10%;
+  transition: translate cubic-bezier(0.3, 0.1, 0.165, 1) 0.3s;
 }
 .Nav,
 .Stack,
@@ -38,7 +41,7 @@
 }
 .NavBtn,
 .NavAmount {
-  background-color: #fff;
+  /* background-color: #fff; */
 }
 .NavBtn {
   display: grid;
@@ -47,6 +50,11 @@
 .NavBtn button {
   border: none;
   transition: 0.2s;
+  font-size: large;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
 }
 .NavAmount {
   display: flex;
@@ -62,28 +70,34 @@
 .NavDiv {
   display: grid;
   text-align: center;
-  grid-template-columns: 6fr 1fr;
+  grid-template-columns: 1fr;
   grid-template-rows: 1fr;
 }
 .mun-btn {
   all: unset;
   position: absolute;
-  background-color: red;
+  /* background-color: red; */
   width: 2rem;
   height: 2rem;
-  top: .5rem;
-  right: .5rem;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .popMnu {
-  position: absolute;
+  position: fixed;
   right: 0;
   top: 0;
-  background-color: #ff0000;
-  width: 200px;
-  height: 40vh;
-  margin: 0.5vh;
-  border-radius: 1vh;
-  box-shadow: 0px 0px 5px 1px #00000029;
+  background-color: #e0e0e0;
+  transition: translate cubic-bezier(0.3, 0.1, 0.165, 1) 0.3s;
+  width: 8rem;
+  height: 100vh;
+  z-index: -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  translate: 8rem;
 }
 .popMnu ul {
   padding: 0;
@@ -102,28 +116,47 @@
   border-radius: 1vh;
 }
 
+.mun-open {
+  z-index: 1 !important;
+  translate: 0rem;
+}
+
 .choose {
-  border-bottom: un solid red 1vh !important;
-  box-shadow: inset 0px -7px 0px -1px #ff0000;
+  /* border-bottom: solid #ef9a9a 1vh !important; */
+  box-shadow: inset 0px -7px 0px -1px #ffcdd2;
 }
 
 .Note {
-  background-color: #eeeeee;
-  border-radius: 1vh;
-  margin: 1vh;
-  height: 7vh;
-  padding: 1vh;
+  border-radius: 5px;
+  margin: 0.2rem;
+  height: 2rem;
+  padding: 0.3rem;
   display: grid;
-  box-shadow: 0px 0px 5px 1px #00000029;
+  border: solid 1px #e0e0e0;
+  background-color: #eeeeee8d;
 
-  grid-column-gap: 1vh;
-  grid-row-gap: 1vh;
+  grid-row-gap: 0.5rem;
   grid-template-columns: 1fr 5fr 1fr;
   grid-template-rows: 100%;
 }
 .Note button {
-  border: none;
+  all: unset;
 }
+.note-btns {
+  display: flex;
+  width: 3rem;
+  flex-shrink: none;
+  align-items: center;
+  justify-content: space-around;
+}
+.note-btns button * {
+  /* background-color: red; */
+  font-size: large;
+}
+.note-btn-delete * {
+  font-size: x-large !important;
+}
+
 .NoteDiv2 {
   display: grid;
   grid-template-columns: 3fr 1fr;
@@ -131,22 +164,21 @@
   grid-column-gap: 1vh;
   grid-row-gap: 1vh;
 }
-.NoteDiv2 * {
+.NoteDiv2 span {
+  /* background-color: red; */
+  font-size: large;
 }
 .date {
-  font-size: 20px;
+  font-size: small !important;
   color: #a1a1a1;
   overflow-y: hidden;
+  flex-shrink: none;
 }
 .Note img {
   cursor: pointer;
-  width: 3vh;
-  height: 3vh;
-  background-color: #ffffff;
-  padding: 1.5vh;
-  border-radius: 1vh;
-  box-shadow: 0px 0px 5px 2px #00000011;
-  transition: 0.2s;
+  width: 1rem;
+  height: 1rem;
+  margin: auto;
 }
 .Note img:hover {
   background-color: #00000029;
@@ -177,6 +209,7 @@
 }
 #pop input {
   outline: none;
+  transition: all ease-in-out 0.3s;
 }
 #pop button {
   cursor: pointer;
@@ -319,16 +352,42 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-.Stack,
-.Stack button {
-  background-color: #b3e5fc;
+.Stack {
   position: absolute;
   bottom: 1rem;
   right: 1rem;
-  border-radius: 50%;
   height: 2.5rem;
   width: 2.5rem;
+  border-radius: 50%;
+  background-color: #ef9a9a;
+  border: none;
+  color: #fff;
+}
+.Stack button {
+  position: absolute;
   font-size: xx-large;
   border: solid 2px;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-err {
+  color: red !important;
+  border: solid 2px red;
+  font-size: large;
+}
+.input-err::placeholder {
+  color: red;
+}
+
+.pop-mnu-div {
+  /* background-color: red; */
+  width: 90%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
 }

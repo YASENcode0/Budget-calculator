@@ -7,6 +7,9 @@ import { NotesContext } from "./contexts/NotesContext";
 import PopupControl from "./components/PopupControl";
 import { v4 as nextId } from "uuid";
 import PopMnu from "./components/PopMnu";
+import { RiUbuntuLine } from "react-icons/ri";
+
+// change + add note bug
 
 function App() {
   const [count, setCount] = useState(0);
@@ -16,6 +19,15 @@ function App() {
   const [NavBtn, setNavBtn] = useState(1);
   const [popDelete, setPopDelete] = useState(false);
   const [popMnu, setPopMnu] = useState(false);
+
+  const [newNote, setNewNote] = useState({
+    id: "",
+    type: true,
+    title: "",
+    amount: null,
+    date: "",
+    img: "https://cdn-icons-png.flaticon.com/512/3514/3514491.png",
+  });
 
   useEffect(() => {
     const loadCount = JSON.parse(localStorage.getItem("count"));
@@ -29,11 +41,32 @@ function App() {
   function addNewNote(note) {
     console.log(note, "note app");
 
-    const allNotes = [...notes, { ...note, id: nextId() }];
-    setNotes(allNotes);
-    localStorage.setItem("notes", JSON.stringify(allNotes));
-
-    console.log(note);
+    console.log(newNote);
+    if (newNote.id === note.id) {
+      console.log(1);
+      const noteIndex = notes.findIndex((i) => {
+        if (i.id === note.id) {
+          return i;
+        }
+      });
+      if (noteIndex >= 0) {
+        const allNotes = notes.map((not, i) => {
+          if (i === noteIndex) return note;
+          console.log(note);
+          return not;
+        });
+        console.log(allNotes);
+        setNotes(allNotes);
+        localStorage.setItem("notes", JSON.stringify(allNotes));
+      }
+      console.log(2);
+      return;
+    } else {
+      console.log(3);
+      const allNotes = [...notes, note];
+      setNotes(allNotes);
+      localStorage.setItem("notes", JSON.stringify(allNotes));
+    }
   }
   function deleteNote(note) {
     console.log(note.id);
@@ -46,7 +79,7 @@ function App() {
   }
 
   function closePop() {
-    setPop(false);
+    setPop(!pop);
   }
   function changeCount({ amount, type }) {
     if (type) {
@@ -64,6 +97,8 @@ function App() {
   return (
     <NotesContext.Provider
       value={{
+        newNote,
+        setNewNote,
         popMnu,
         setPopMnu,
         popDelete,
@@ -84,13 +119,20 @@ function App() {
         setPop,
       }}
     >
-      <div className="App">
-        <PopMnu />
+      <div
+        className={`App ${popMnu && "app-slide"}`}
+        onClick={(e) => {
+          if (e.clientY > 100) {
+            setPopMnu(false);
+          }
+        }}
+      >
         <PopupControl />
         <NavBar />
         <Main />
         <StackBar />
       </div>
+      <PopMnu />
     </NotesContext.Provider>
   );
 }
