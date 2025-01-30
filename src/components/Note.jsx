@@ -3,7 +3,13 @@ import Delete from "../assets/trash.png";
 import { MdDelete } from "react-icons/md";
 import { FaPen } from "react-icons/fa";
 
-export default function Note({ coinMark, note, setIdDelete, setPopDelete, editNote }) {
+export default function Note({
+  coinMark,
+  note,
+  setIdDelete,
+  setPopDelete,
+  editNote,
+}) {
   return (
     <div className="Note">
       <img src={note.img} alt="icon" />
@@ -26,7 +32,11 @@ export default function Note({ coinMark, note, setIdDelete, setPopDelete, editNo
         >
           <MdDelete />
         </button>
-        <button onClick={()=>{editNote(note)}}>
+        <button
+          onClick={() => {
+            editNote(note);
+          }}
+        >
           <FaPen />
         </button>
       </div>

@@ -15,7 +15,7 @@ export default function PopupControl() {
     if (newNote.title !== "" && newNote.amount !== null) {
       closePop();
       changeCount(newNote);
-      addNewNote({ ...newNote, date: Date() , id:nextId()});
+      addNewNote({ ...newNote, date: Date() });
       clearAll();
     }
     if (!newNote.amount) {
@@ -54,7 +54,6 @@ export default function PopupControl() {
             add
           </button>
           <input
-            autofocus
             // required
             className={errs?.title && "input-err"}
             placeholder={errs?.title ? errs?.title : "title"}

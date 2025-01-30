@@ -21,7 +21,7 @@ function App() {
   const [popMnu, setPopMnu] = useState(false);
 
   const [newNote, setNewNote] = useState({
-    id: "",
+    id: nextId(),
     type: true,
     title: "",
     amount: null,
@@ -32,42 +32,41 @@ function App() {
   useEffect(() => {
     const loadCount = JSON.parse(localStorage.getItem("count"));
     setCount(loadCount ? loadCount : 0);
-
     const allNotes = JSON.parse(localStorage.getItem("notes"));
-
     setNotes(allNotes ? allNotes : []);
   }, []);
 
   function addNewNote(note) {
-    console.log(note, "note app");
-
     console.log(newNote);
-    if (newNote.id === note.id) {
-      console.log(1);
+    console.log(note);
+    
+    if (newNote.id && note.id) {
+      console.log(true);
+
       const noteIndex = notes.findIndex((i) => {
         if (i.id === note.id) {
           return i;
         }
       });
+      console.log(noteIndex);
       if (noteIndex >= 0) {
         const allNotes = notes.map((not, i) => {
           if (i === noteIndex) return note;
-          console.log(note);
           return not;
         });
-        console.log(allNotes);
-        setNotes(allNotes);
-        localStorage.setItem("notes", JSON.stringify(allNotes));
+        pushNote(allNotes);
       }
-      console.log(2);
       return;
     } else {
-      console.log(3);
-      const allNotes = [...notes, note];
-      setNotes(allNotes);
-      localStorage.setItem("notes", JSON.stringify(allNotes));
+      pushNote([...notes, note]);
     }
   }
+
+  function pushNote(AllNote) {
+    setNotes(AllNote);
+    localStorage.setItem("notes", JSON.stringify(AllNote));
+  }
+
   function deleteNote(note) {
     console.log(note.id);
     const newNotes = notes.filter((newNote) => {
@@ -81,6 +80,7 @@ function App() {
   function closePop() {
     setPop(!pop);
   }
+
   function changeCount({ amount, type }) {
     if (type) {
       setCount(Number(count) + Number(amount));

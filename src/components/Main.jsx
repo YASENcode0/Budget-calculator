@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import Note from "./Note";
 import { NotesContext } from "../contexts/NotesContext";
 import PopupDelete from "./PopupDelete";
+import { MdStickyNote2 } from "react-icons/md";
 
 export default function Main() {
   const [idDelete, setIdDelete] = useState("");
